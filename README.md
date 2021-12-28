@@ -1,5 +1,8 @@
 # go-litefsm
 
+[![CI](https://github.com/breeswish/go-litefsm/actions/workflows/workflow.yaml/badge.svg)](https://github.com/breeswish/go-litefsm/actions/workflows/workflow.yaml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/breeswish/go-litefsm.svg)](https://pkg.go.dev/github.com/breeswish/go-litefsm)
+
 A deadly simple state machine for Golang, within 100 LOC.
 
 ## Example
