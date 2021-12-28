@@ -41,4 +41,9 @@ func TestFSM(t *testing.T) {
 	assert.Nil(fsm.Goto("StmtHandleBegin"))
 	assert.Nil(fsm.Goto("StmtHandleFinish"))
 	assert.Nil(fsm.Goto("CmdQueryFinish"))
+
+	fsm.ResetTo("FooState")
+	assert.EqualValues("FooState", fsm.Current())
+	assert.ErrorIs(fsm.Goto("CmdDispatchBegin"), ErrInvalidTransit)
+	assert.ErrorIs(fsm.Goto("CmdQueryBegin"), ErrInvalidTransit)
 }
