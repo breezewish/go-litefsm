@@ -19,19 +19,19 @@ func writeHeader(buf *bytes.Buffer) {
 	buf.WriteString("\n")
 }
 
-func getSortedTransitBeginStates(t Transitions) []string {
+func writeTransitions(buf *bytes.Buffer, t Transitions) {
 	var beginStates []string
 	for state := range t {
 		beginStates = append(beginStates, string(state))
 	}
 	sort.Strings(beginStates)
-	return beginStates
-}
-
-func writeTransitions(buf *bytes.Buffer, t Transitions) {
-	beginStates := getSortedTransitBeginStates(t)
 	for _, beginState := range beginStates {
-		for endState := range t[State(beginState)] {
+		var endStates []string
+		for state := range t[State(beginState)] {
+			endStates = append(endStates, string(state))
+		}
+		sort.Strings(endStates)
+		for _, endState := range endStates {
 			buf.WriteString(fmt.Sprintf(`    "%s" -> "%s";`, beginState, endState))
 			buf.WriteString("\n")
 		}
