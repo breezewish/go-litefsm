@@ -1,5 +1,9 @@
 package litefsm
 
+import (
+	"fmt"
+)
+
 type StateMachine struct {
 	transitions  Transitions
 	currentState State
@@ -10,6 +14,10 @@ func NewStateMachine(transitions Transitions, initialState State) *StateMachine 
 		transitions:  transitions,
 		currentState: initialState,
 	}
+}
+
+func (sm *StateMachine) Sql() string {
+	return fmt.Sprintf("%d")
 }
 
 func (sm *StateMachine) Current() State {
