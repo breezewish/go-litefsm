@@ -1,18 +1,11 @@
-name: Unit Test
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: push
 
 permissions:
   contents: read
 
 jobs:
   lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,7 +14,11 @@ jobs:
         with:
           version: v1.43
   test:
-    runs-on: ubuntu-latest
+    name: Test
+    strategy:
+      matrix:
+        platform: [ ubuntu-latest, macos-latest ]
+    runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Go
